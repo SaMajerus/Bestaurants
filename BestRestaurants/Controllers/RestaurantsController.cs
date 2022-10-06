@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore; 
 using Microsoft.AspNetCore.Mvc;
 using BestRestaurants.Models;
+using System.Linq;
 
 namespace BestRestaurants.Controllers
 {
@@ -17,7 +18,8 @@ namespace BestRestaurants.Controllers
 
     public ActionResult Index()
     {
-      List<Restaurant> model = _db.Restaurants.Include(restaurant => restaurant.Type).ToList(); 
+      List<Restaurant> model = _db.Restaurants.Include(restaurant => restaurant.RestaurantId).ToList(); 
+      return View(model);
     }
 
     public ActionResult Create()
@@ -26,44 +28,44 @@ namespace BestRestaurants.Controllers
     }
 
     [HttpPost]
-    public ActionResult Create(Type type)
+    public ActionResult Create(Restaurant restaurant)
     {
-      _db.Types.Add(type); 
+      _db.Restaurants.Add(restaurant); 
       _db.SaveChanges(); 
       return RedirectToAction("Index"); 
     }
 
     public ActionResult Show(int id)
     {
-      Type thisType = _db.Types.FirstOrDefault(type => type.Type == id); 
-      return View(thisType);
+      Restaurant thisRestaurant = _db.Restaurants.FirstOrDefault(restaurant => restaurant.RestaurantId == id); 
+      return View(thisRestaurant);
     }
 
     public ActionResult Edit(int id)
     {
-      Type thisType = _db.Types.FirstOrDefault(type => type.TypeId == id); 
-      return View(thisType);
+      Restaurant thisRestaurant = _db.Restaurants.FirstOrDefault(restaurant => restaurant.RestaurantId == id); 
+      return View(thisRestaurant);
     }
 
     [HttpPost]
-    public ActionResult Edit(Type type)
+    public ActionResult Edit(Restaurant restaurant)
     {
-      _db.Types.Add(type); 
+      _db.Restaurants.Add(restaurant); 
       _db.SaveChanges(); 
       return RedirectToAction("Index"); 
     }
 
     public ActionResult Delete(int id)
     {
-      Type thisType = _db.Types.FirstOrDefault(type => type.TypeId == id);
-      return View(thisType);
+      Restaurant thisRestaurant = _db.Restaurants.FirstOrDefault(restaurant => restaurant.RestaurantId == id);
+      return View(thisRestaurant);
     }
 
     [HttpPost, ActionName("Delete")]
     public ActionResult DeleteConfirmed(int id)
     {
-      Type thisType = _db.Types.FirstOrDefault(type => type.TypeId == id);
-      _db.Types.Remove(type); 
+      Restaurant thisRestaurant = _db.Restaurants.FirstOrDefault(restaurant => restaurant.RestaurantId == id);
+      _db.Restaurants.Remove(thisRestaurant); 
       _db.SaveChanges(); 
       return RedirectToAction("Index"); 
     }

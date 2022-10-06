@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using BestRestaurants.Models;
 
+
 namespace BestRestaurants.Controllers
 {
   public class TypesController : Controller
@@ -35,7 +36,7 @@ namespace BestRestaurants.Controllers
 
     public ActionResult Show(int id)
     {
-      Type thisType = _db.Types.FirstOrDefault(type => type.Type == id);
+      Type thisType = _db.Types.FirstOrDefault(type => type.TypeId == id);
       return View(thisType);
     }
 
@@ -64,7 +65,7 @@ namespace BestRestaurants.Controllers
     {
       Type thisType = _db.Types.FirstOrDefault(type => type.TypeId == id);
       _db.Types.Remove(thisType);
-      _db.SavesChanges();
+      _db.SaveChanges();
       return RedirectToAction("Index");
     }
   }

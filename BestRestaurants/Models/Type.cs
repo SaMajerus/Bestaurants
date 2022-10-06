@@ -6,11 +6,11 @@ namespace BestRestaurants.Models
   {
     public Type()
     {
-      this.Restaurants = new HashSet<Restuarant>();
+      this.Restaurants = new HashSet<Restaurant>();
     }
 
     public int TypeId { get; set; }
-    public string Type { get; set; }
+    public string TypeName { get; set; }
     public virtual ICollection<Restaurant> Restaurants { get; set; }
   }
 }
