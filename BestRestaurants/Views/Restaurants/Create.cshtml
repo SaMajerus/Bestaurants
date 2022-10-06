@@ -7,8 +7,8 @@
 
 @using (Html.BeginForm())
 {
-  @Html.LabelFor(model => model.Type)
-  @Html.DropDownList("TypeId")
+  @Html.LabelFor(model => model.Cuisine)
+  @Html.DropDownList("CuisineId")
   <br>
   @Html.LabelFor(model => model.Name)
   @Html.TextBoxFor(model => model.Name)

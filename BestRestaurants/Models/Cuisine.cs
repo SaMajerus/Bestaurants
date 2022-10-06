@@ -2,15 +2,15 @@ using System.Collections.Generic;
 
 namespace BestRestaurants.Models
 {
-  public class Type
+  public class Cuisine
   {
-    public Type()
+    public Cuisine()
     {
       this.Restaurants = new HashSet<Restaurant>();
     }
 
-    public int TypeId { get; set; }
-    public string TypeName { get; set; }
+    public int CuisineId { get; set; }
+    public string CuisineName { get; set; }
     public virtual ICollection<Restaurant> Restaurants { get; set; }
   }
 }

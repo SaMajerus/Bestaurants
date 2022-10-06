@@ -7,7 +7,7 @@ namespace BestRestaurants.Models
     public int Rating { get; set; }
     public int Cost { get; set; }
     public string Review { get; set; }
-    public int TypeId { get; set; }
-    public virtual Type Type { get; set; }
+    public int CuisineId { get; set; }
+    public virtual Cuisine Cuisine { get; set; }
   }
 }
