@@ -19,7 +19,7 @@ namespace BestRestaurants.Controllers
 
     public ActionResult Index()
     {
-      List<Restaurant> model = _db.Restaurants.Include(restaurant => restaurant.RestaurantId).ToList(); 
+      List<Restaurant> model = _db.Restaurants.Include(restaurant => restaurant.Type).ToList(); 
       return View(model);
     }
 
@@ -53,7 +53,7 @@ namespace BestRestaurants.Controllers
     [HttpPost]
     public ActionResult Edit(Restaurant restaurant)
     {
-      _db.Restaurants.Add(restaurant); 
+      _db.Entry(restaurant).State = EntityState.Modified;
       _db.SaveChanges(); 
       return RedirectToAction("Index"); 
     }
