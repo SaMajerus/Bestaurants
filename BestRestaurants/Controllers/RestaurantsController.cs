@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using BestRestaurants.Models;
 using System.Linq;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace BestRestaurants.Controllers
 {
@@ -24,6 +25,7 @@ namespace BestRestaurants.Controllers
 
     public ActionResult Create()
     {
+      ViewBag.TypeId = new SelectList(_db.Types, "TypeId", "TypeName");
       return View(); 
     }
 
@@ -43,7 +45,8 @@ namespace BestRestaurants.Controllers
 
     public ActionResult Edit(int id)
     {
-      Restaurant thisRestaurant = _db.Restaurants.FirstOrDefault(restaurant => restaurant.RestaurantId == id); 
+      Restaurant thisRestaurant = _db.Restaurants.FirstOrDefault(restaurant => restaurant.RestaurantId == id);
+      ViewBag.TypeId = new SelectList(_db.Types, "TypeId", "TypeName");
       return View(thisRestaurant);
     }
 
